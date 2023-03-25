@@ -2,37 +2,30 @@
 function maxOfTwoNumbers(number1, number2) {
   if (number1 > number2){
     return number1;
-  } else {
+  } else if (number1 < number2) {
     return number2;
+  } else {
+    return number1;
   }
 }
 
-
 // Iteration #2: Find longest word
-const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
+const words = ['mystery', 'sis', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
 function findLongestWord(inputWords) {
   let longestString = "";
-  let errorMessage = "null";
 
-  //going through an array of strings
-  //compare lenght of the strings
-  //find the one that is the longest and add it to the variable
-  if (inputWords.length != 0){
-    for (let i = 0; i < inputWords.length -1 ; i++){
-      if (inputWords[i].length > inputWords[i+1].length) {
+  if( inputWords.length > 0){
+    for(let i = 0; i < inputWords.length; i++){
+      if(inputWords[i].length > longestString.length){
         longestString = inputWords[i];
-    } else {
-      longestString = inputWords[i+1];
+      }
     }
-  }
-  } else {
-    return errorMessage;
+    return longestString;
+  } else if (inputWords.length === 0) {
+    return null;
   }
 
-
-  //return the value of the variable
-  return longestString;
 }
 
 
@@ -49,29 +42,27 @@ function sumNumbers(inputNumbers) {
 }
 
 
-
 // Iteration #3.1 Bonus:
 const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
 
 function sum(inputArray) {
   let sum = 0;
-  let errorMessage = 0;
-
   if (inputArray.length !== 0){
-    for (let i =o; i < inputArray.length; i++){
+    for (let i = 0; i < inputArray.length; i++){
       if (typeof inputArray[i] === "number"){
         sum += inputArray[i];
       } else if (typeof inputArray[i] === "string"){
         sum += inputArray[i].length;
-      } else if (typeof inputArray[i] === "boolean" || inputArray[i] === 0) {
+      } else if (inputArray[i] === false) {
         sum += 0;
-      } else if (typeof inputArray[i] === "boolean" || inputArray[i] === 1) {
+      } else if (inputArray[i] === true) {
         sum += 1;
+      } else if (typeof inputArray[i] === "object" || typeof inputArray[i] === "symbol" ){
       }
     }
     return sum;
   } else {
-    return errorMessage;
+    return 0;
   }
 
 }
@@ -81,16 +72,45 @@ function sum(inputArray) {
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(arrayOfNumbers) {
+
+  if(arrayOfNumbers.length > 0){
+    let averageOfSum = sumNumbers(arrayOfNumbers) / arrayOfNumbers.length;
+    return averageOfSum;
+  } else if (arrayOfNumbers.length == 0){
+    return null;
+  }
+}
 
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
+function averageWordLength(arrayOfWords) { 
+  let averageWordLength = 0;
+  let totalWordLength = 0;
+  if(arrayOfWords.length > 0){
+    for (let i = 0 ; i < arrayOfWords.length ; i++){
+      totalWordLength += arrayOfWords[i].length;
+    }
+    averageWordLength = totalWordLength / arrayOfWords.length;
+    return averageWordLength;
+} else if (averageWordLength == 0){
+  return null;
+}
+}
+
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(mixedArr) {
+  let averageofSum = 0;
+  if (mixedArr.length > 0){
+    averageofSum = sum(mixedArr) / mixedArr.length;
+    return averageofSum;
+  } else if (mixedArr.length == 0){
+    return null;
+  }
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -107,7 +127,37 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
+
+function uniquifyArray(newArray) {
+//method 1
+//create an empty array
+//loop through the array, 
+//find the unique element
+//only add that unqiue element to the empty array,
+//find the duplicated element (more than 1) and add that once to the emptry array,
+//using indexOf and includes()
+//return the accumulated array
+
+let returnedArray = [];
+if (newArray.length > 0){
+  for (let i = 0; i < newArray.length; i++){
+    if (returnedArray.includes(newArray[i]) === false){
+      returnedArray.push(newArray[i]);
+    }
+  }
+
+} else {
+  return null;
+}
+
+return returnedArray;
+
+
+//method2
+//find the dupicated element (more than 1) and remove duplicated element in the current array and leave only 1 item.
+//return the new array
+
+}
 
 
 
