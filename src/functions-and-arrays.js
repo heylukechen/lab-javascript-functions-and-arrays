@@ -15,7 +15,7 @@ const words = ['mystery', 'sis', 'aviator', 'crocodile', 'pearl', 'orchard', 'cr
 function findLongestWord(inputWords) {
   let longestString = "";
 
-  if( inputWords.length > 0){
+  if(inputWords.length > 0){
     for(let i = 0; i < inputWords.length; i++){
       if(inputWords[i].length > longestString.length){
         longestString = inputWords[i];
@@ -152,7 +152,6 @@ if (newArray.length > 0){
 
 return returnedArray;
 
-
 //method2
 //find the dupicated element (more than 1) and remove duplicated element in the current array and leave only 1 item.
 //return the new array
@@ -160,12 +159,25 @@ return returnedArray;
 }
 
 
-
 // Iteration #6: Find elements
+//declare a function named doesWordExist that will take in an array of words as one argument and a word to search for as the other. 
+//Return true if the word exists in the array; otherwise, return false.
+
+
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
+function doesWordExist(wordsArray, searchWord) {
 
+  if (wordsArray.length !== 0){
+    if(wordsArray.includes(searchWord) === true){
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return null;
+  }
+}
 
 
 // Iteration #7: Count repetition
@@ -183,11 +195,25 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(wordsArray, searchWord) {
+  let count = 0;
+  if(wordsArray.length !==0){
+    for(let i = 0; i < wordsArray.length; i++){
+      if (wordsArray[i] === searchWord){
+        count = count +1;
+      } else {
+        count = count + 0;
+      }
+    }
+    return count;
+  } else {
+    return 0;
+  }
+}
 
 
 
-// Iteration #8: Bonus
+// Iteration #8.1: Bonus
 const matrix = [
   [8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
   [49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0],
@@ -211,8 +237,44 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
+function greatestProduct(newDoubleArray) {
+  //Goal: to find the four adjacent numbers that are the biggest inside the array wether horizontally or vertically
+  //to get access to each position in the array
+  //find the adjacent numbers and multiple and store it.
 
+  let product = 0;
+
+  for (let i = 0; i < newDoubleArray.length; i++){
+    for (let j = 0; j < newDoubleArray[i].length; j++){
+      let tempCalculation = newDoubleArray[i][j] * newDoubleArray[i][j+1] * newDoubleArray[i][j+2] * newDoubleArray[i][j+3];
+      if (product < tempCalculation){
+        product = tempCalculation;
+      }
+    }
+  }
+  return product;
+}
+
+// Iteration #8.2: Bonus
+
+function greatestDiagonalProduct(newDoubleArray) {
+  let product = 0;
+
+  for (let i = 0; i < newDoubleArray.length; i++){
+    for (let j = 0; j < newDoubleArray[i].length; j++){
+      let tempCalculation1 = newDoubleArray[i][j] * newDoubleArray[i+1][j+1] * newDoubleArray[i+2][j+2] * newDoubleArray[i+3][j+3];
+      let tempCalculation2 = newDoubleArray[i][newDoubleArray[i].length-1-j] * newDoubleArray[i+1][newDoubleArray[i].length-2-j] * newDoubleArray[i+2][newDoubleArray[i].length-3-j] * newDoubleArray[i+3][newDoubleArray[i].length-4-j];
+
+      if (tempCalculation1 > tempCalculation2 && tempCalculation1 > product){
+        product = tempCalculation1;
+      } else if (tempCalculation2 > tempCalculation1 && tempCalculation1 > product){
+        product = tempCalculation2;
+      } else {
+      }
+    }
+  }
+  return product;
+}
 
 
 
