@@ -47,6 +47,8 @@ const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
 
 function sum(inputArray) {
   let sum = 0;
+  erroMessage = "Errors";
+
   if (inputArray.length !== 0){
     for (let i = 0; i < inputArray.length; i++){
       if (typeof inputArray[i] === "number"){
@@ -57,7 +59,9 @@ function sum(inputArray) {
         sum += 0;
       } else if (inputArray[i] === true) {
         sum += 1;
-      } else if (typeof inputArray[i] === "object" || typeof inputArray[i] === "symbol" ){
+      } else if (typeof inputArray[i] !== "number" || typeof inputArray[i] !== "string" || typeof inputArray[i] !== "boolean"  ){
+        throw new Error("Unsupported data type sir or ma'am");
+        
       }
     }
     return sum;
@@ -179,7 +183,6 @@ function doesWordExist(wordsArray, searchWord) {
   }
 }
 
-
 // Iteration #7: Count repetition
 const wordsCount = [
   'machine',
@@ -256,10 +259,8 @@ function greatestProduct(newDoubleArray) {
 }
 
 // Iteration #8.2: Bonus
-
 function greatestDiagonalProduct(newDoubleArray) {
   let product = 0;
-
   for (let i = 0; i < newDoubleArray.length; i++){
     for (let j = 0; j < newDoubleArray[i].length; j++){
       let tempCalculation1 = newDoubleArray[i][j] * newDoubleArray[i+1][j+1] * newDoubleArray[i+2][j+2] * newDoubleArray[i+3][j+3];
@@ -275,8 +276,6 @@ function greatestDiagonalProduct(newDoubleArray) {
   }
   return product;
 }
-
-
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
